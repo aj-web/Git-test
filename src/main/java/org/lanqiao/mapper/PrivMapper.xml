@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="org.lanqiao.mapper.PrivMapper">
+      <resultMap type="Priv" id="PrivResultMap">
+        	<id property="pid" column="pid"/>
+        	<result property="pclass" column="pclass"/>
+        	<result property="purl" column="purl"/>
+        	<result property="name" column="name"/>
+        	<result property="state" column="state"/>
+        	<result property="by001" column="by001"/>
+        	<result property="by002" column="by002"/>
+        	<result property="by003" column="by003"/>
+        	<result property="by004" column="by004"/>
+        	<result property="creattime" column="creattime"/>
+        	<result property="creatuser" column="creatuser"/>
+        	<result property="updatetime" column="updatetime"/>
+        	<result property="updateuser" column="updateuser"/>
+        </resultMap>
+        	<select id="getPrivByAid" resultMap="PrivResultMap">
+        		select pid,pclass,purl from tc_priv where pid in(select pid from tc_role_priv where rid in(select rid from tc_role_admin where aid =#{id}))
+        	</select>
+        	<select id="getPrivByRid" resultMap="PrivResultMap">
+        		select pid,pclass,purl,name from tc_priv where pid in (select pid from tc_role_priv where rid=#{rid}) and state=0
+        	</select>
+        
+        </mapper>
