@@ -20,7 +20,7 @@
 		#{aid})
 	</select>
 	<select id="searchAdminPower" resultMap="RoleResultMap">
-		select * from tc_role
+		select rid,rname from tc_role
 	</select>
 	<delete id="deleteRole">
 		delete from tc_role where rid=#{rid}

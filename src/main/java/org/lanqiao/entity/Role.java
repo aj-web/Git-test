@@ -120,6 +120,32 @@ public class Role {
 	public void setLp(List<Priv> lp) {
 		this.lp = lp;
 	}
+
+	public Role(int rid, String rname, List<Priv> lp) {
+		this.rid = rid;
+		this.rname = rname;
+		this.lp = lp;
+	}
+
+	public Role(int rid, String rname) {
+		this.rid = rid;
+		this.rname = rname;
+	}
+
+	public Role(int rid, String rname, String by001, String by002, int by003, Date by004, String creatuser,
+			Date creattime, String updateuser, Date updatetime, List<Priv> lp) {
+		this.rid = rid;
+		this.rname = rname;
+		this.by001 = by001;
+		this.by002 = by002;
+		this.by003 = by003;
+		this.by004 = by004;
+		this.creatuser = creatuser;
+		this.creattime = creattime;
+		this.updateuser = updateuser;
+		this.updatetime = updatetime;
+		this.lp = lp;
+	}
 	
 	
 }

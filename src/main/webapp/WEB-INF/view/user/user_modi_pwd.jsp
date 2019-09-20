@@ -6,6 +6,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
          <%@include file="../include/hearder.jsp" %>
+         <link rel="stylesheet" type="text/css" media="all"
+         	   href="${pageContext.request.contextPath}/plugins/easyui/themes/default/easyui.css">
+         	   
+         	   <link rel="stylesheet" type="text/css" media="all"
+         	   href="${pageContext.request.contextPath}/plugins/easyui/themes/icon.css">
+         	   
+         	   
+         	   
         <script type="text/javascript">
 	        $(function(){
 	    		if('${errorPwdMsg}'!=''){

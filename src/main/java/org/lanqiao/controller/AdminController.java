@@ -54,17 +54,17 @@ public class AdminController {
 	public String login1() {
 		return "index"; // 当跳转的页面页面放在WEB-INF下面时
 	}
-
+	
 	/**
-	 * 访问角色管理页面
+	 * 访问角色管理
 	 * 
 	 * @return
 	 */
-	/*
-	 * @RequestMapping("/role/role_list.html") public String login2() { return
-	 * "role/role_list"; // 当跳转的页面页面放在WEB-INF下面时 }
-	 */
-
+	@RequestMapping("/role/role_list.html")
+	public String login2() {
+		return "/role/role_list"; // 当跳转的页面页面放在WEB-INF下面时
+	}
+	
 	/**
 	 * 访问管理员页面
 	 * 
@@ -75,6 +75,7 @@ public class AdminController {
 		return "admin/admin_list"; // 当跳转的页面页面放在WEB-INF下面时
 	}
 
+	
 	/**
 	 * 访问资费管理页面
 	 * 
@@ -85,6 +86,15 @@ public class AdminController {
 		return "/fee/fee_list"; // 当跳转的页面页面放在WEB-INF下面时
 	}
 
+	
+	/**
+	 * 测试json
+	 * @return
+	 */
+	@RequestMapping("/testjson")
+	public String test() {
+		return "role/json";
+	}
 	/**
 	 * 访问账务账号页面
 	 * 

@@ -24,7 +24,7 @@ table
     width: 910px;
     border: 0px;
     text-align: left;
-}
+} 
 a
 {
     text-decoration: none;
@@ -679,4 +679,14 @@ div.tabs ul li a
 #report_data
 {
     min-height: 320px;
+}
+.xiugai{
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    text-align: start;
+    border-color: grey;
+    font-variant: normal;
 }
