@@ -19,6 +19,7 @@
     	        }        	
             }
 
+            /* 修改角色信息 */
             function updateRole(rid){
             	location.href="${pageContext.request.contextPath}/role/updateRoleAction.do?rid="+rid;
             }
@@ -26,9 +27,9 @@
     </head>
     <body>
         <!--Logo区域开始-->
-        <div id="header">
+        <div id="header">当前用户${Ad.aname}
             <img src="${pageContext.request.contextPath}/assets/images/logo.png" alt="logo" class="left"/>
-            <a href="${pageContext.request.contextPath}/user/exitAction.do">[退出]</a>            
+            <a href="${pageContext.request.contextPath}/exitAction.do">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->

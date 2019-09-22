@@ -24,5 +24,10 @@
         	<select id="getPrivByRid" resultMap="PrivResultMap">
         		select pid,pclass,purl,name from tc_priv where pid in (select pid from tc_role_priv where rid=#{rid}) and state=0
         	</select>
-        
+        	<select id="getAllPriv" resultMap="PrivResultMap">
+        		select * from tc_priv
+        	</select>
+        	<select id="findPrivByRole" resultMap="PrivResultMap" parameterType="Role">
+        		select * from tc_priv where pid in (select pid from tc_role_priv where rid=#{rid})
+        	</select>
         </mapper>

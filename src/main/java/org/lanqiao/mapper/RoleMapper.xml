@@ -28,5 +28,20 @@
 	<delete id="deleteRolePrivs">
 		delete from tc_role_priv where rid=#{rid}
 	</delete>
+	<select id="findRoleByRid" resultMap="RoleResultMap">
+		select * from tc_role where rid=#{rid}
+	</select>
+	<update id="updateRolePrivs">
+		update tc_role set rname=#{rname} where rid=#{rid}
+	</update>
+	<!-- <insert id="insertRolePrivs">
+		insert into tc_role_priv (rid,pid,creattime) values (#{rid},#{rname},#{creattime})
+	</insert>
+	<insert id="insertRole" useGeneratedKeys="true" keyProperty="rid" keyColumn="rid">
+		insert into tc_role (rname,creattime) value (#{rname},#{creattime})
+	</insert>
+	<insert id="insertRolePrivs">
+		insert into tc_role_priv (rid,pid,creattime) values (#{rid},#{pid},#{creattime})
+	</insert> -->
 
 </mapper>

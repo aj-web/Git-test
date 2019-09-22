@@ -1,6 +1,7 @@
 package org.lanqiao.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -179,14 +180,12 @@ public class AdminController {
 	public String exit(HttpSession session, HttpServletRequest request) {
 		request.getSession().invalidate();
 		String path = request.getServletContext().getContextPath();
-		System.out.println(path);
 		return "redirect:login.jsp";
 	}
 
 	// 改密码
 	@RequestMapping("updateAction.do")
-	public String UpdateUserInfo(String newpwd, String oldpwd, String renewpwd, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
+	public String UpdateUserInfo(String newpwd, String oldpwd, String renewpwd, HttpServletRequest request,HttpServletResponse response, HttpSession session) throws Exception {
 		Admin admin = (Admin) session.getAttribute("Ad");
 		String oldpwd1 = Hashing.md5().hashString(oldpwd, Charsets.UTF_8).toString();
 		String newpwd1 = Hashing.md5().hashString(newpwd, Charsets.UTF_8).toString();
@@ -206,5 +205,31 @@ public class AdminController {
 		}
 	}
 
+	//管理员增加管理员
 	
+	  public void addAdmin(HttpServletRequest request, HttpServletResponse response,String aname,String acname,String apwd,String reapwd,String aemail,String atel) throws ServletException, IOException { 
+		  //头像 userimg	  
+	  String [] roles=request.getParameterValues("role"); 
+	  List<Role> lr=new ArrayList<Role>(); 
+	  for(String priv : roles) { 
+		  Role r = new Role();
+	  r.setRid(Integer.parseInt(priv)); 
+	  lr.add(r); 
+	  } 
+	  Admin admin=new Admin();
+	  admin.setAcname(acname); 
+	  admin.setAname(aname); 
+	  admin.setAtel(atel);
+	  admin.setAemail(aemail); 
+	  admin.setApwd(apwd); 
+	  admin.setLr(lr); 
+	  boolean b=adminService.addRole(admin); 
+	  if(b) { 
+		  request.setAttribute("msg","添加成功"); 
+		  }else{ 
+			  request.setAttribute("msg", "添加失败"); 
+			  }
+	  request.getRequestDispatcher("/admin/modiShowAction.do").forward(request,response); 
+	  }	 
 }
+

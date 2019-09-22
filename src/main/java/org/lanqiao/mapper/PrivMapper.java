@@ -29,5 +29,5 @@ public interface PrivMapper {
 	 * @param role
 	 * @return
 	 */
-	List<Priv> findPrivByRole(Role role);
+	public List<Priv> findPrivByRole(Role role);
 }
