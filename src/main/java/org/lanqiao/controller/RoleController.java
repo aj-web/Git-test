@@ -59,17 +59,16 @@ public class RoleController {
 		// 显示角色管理页面的信息
 
 		@RequestMapping("/role/roleListAction.do")
-
-		@ResponseBody
-		protected Map<String,Object> roleListAction(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+//		@ResponseBody
+		protected String roleListAction(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 			List<Role> lr = roleService.getAllRoles();
-//			request.setAttribute("roleList", lr);
-			Map<String, Object> m=new HashMap<String, Object>();
-			m.put("total", 8);
-			m.put("rows", lr);
+			request.setAttribute("roleList", lr);
+//			Map<String, Object> m=new HashMap<String, Object>();
+//			m.put("total", 8);
+//			m.put("rows", lr);
 //		  request.getRequestDispatcher("/view/role/role_list.jsp").forward(request,response); 
-//			return "role/role_list";
-			return m;
+//			return m;
+			return "role/role_list";
 
 		}
 
@@ -92,15 +91,6 @@ public class RoleController {
 		protected Map showJson(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 			List<Student> ls=new ArrayList<Student>();
 			ls.add(new Student("jack","jack1","135544785","测试"));
-			ls.add(new Student("jack","jack2","135544785","测试"));
-			ls.add(new Student("jack","jack13","135544785","测试"));
-			ls.add(new Student("jack","jack14","135544785","测试"));
-			ls.add(new Student("jack","jack2","135544785","测试"));
-			ls.add(new Student("jack","jack13","135544785","测试"));
-			ls.add(new Student("jack","jack14","135544785","测试"));
-			ls.add(new Student("jack","jack2","135544785","测试"));
-			ls.add(new Student("jack","jack13","135544785","测试"));
-			ls.add(new Student("jack","jack14","135544785","测试"));
 			ls.add(new Student("jack","jack2","135544785","测试"));
 			ls.add(new Student("jack","jack13","135544785","测试"));
 			ls.add(new Student("jack","jack14","135544785","测试"));

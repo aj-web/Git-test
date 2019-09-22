@@ -69,6 +69,7 @@
                 url = 'update_user.php?id='+row.id;
             }
         }
+        /*保存增加的管理员*/
         function saveUser(){
             $('#fm').form('submit',{
                 url: url,
@@ -89,6 +90,7 @@
                 }
             });
         }
+        /*删除管理员*/
         function destroyUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
