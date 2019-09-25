@@ -57,22 +57,23 @@
 	<!--主要区域开始-->
 	<div id="main">
 		<table id="dg"  title="角色管理" class="easyui-datagrid" style="width: 930px; height: 410px" 
-			url="/maventele/role/TestJSON.do"
+			url="/maventele/role/roleListAction.do"
 			toolbar="#toolbar" pagination="true" rownumbers="true"
 			fitColumns="true" singleSelect="true">
 			<thead>
 				<tr>
-					<th field="firstname" width="50" class="datagrid-header-over">角色ID</th>
-					<th field="lastname" width="50">角色名称</th>
-					<th field="phone" width="50">拥有的权限</th>
-					<th field="email" width="50"></th>
+					<th field="rid" width="50" class="datagrid-header-over">角色ID</th>
+					<th field="rname" width="50">角色名称</th>
+					<th field="privs" width="50">拥有的权限</th>
+					<th field="imgage" width="50">用户头像</th>
+					<!-- 用户头像功能未启用 -->
 				</tr>
 			</thead>
 		</table>
 		
 		<div id="toolbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true" onclick="newUser()">增加管理员</a> <a
+				iconCls="icon-add" plain="true" onclick="location.href='${pageContext.request.contextPath}/role/privListAction.do'">增加管理员</a> <a
 				href="javascript:void(0)" class="easyui-linkbutton"
 				iconCls="icon-edit" plain="true" onclick="editUser()">修改管理员</a> <a
 				href="javascript:void(0)" class="easyui-linkbutton"
@@ -84,19 +85,19 @@
 				style="margin: 0; padding: 20px 50px">
 				<h3>User Information</h3>
 				<div style="margin-bottom: 10px">
-					<input name="firstname" class="easyui-textbox" required="true"
+					<input name="rid" class="easyui-textbox" required="true"
 						label="First Name:" style="width: 100%">
 				</div>
 				<div style="margin-bottom: 10px">
-					<input name="lastname" class="easyui-textbox" required="true"
+					<input name="rname" class="easyui-textbox" required="true"
 						label="Last Name:" style="width: 100%">
 				</div>
 				<div style="margin-bottom: 10px">
-					<input name="phone" class="easyui-textbox" required="true"
-						label="Phone:" style="width: 100%">
+					<input name="privs" class="easyui-textbox" required="true"
+						label="name:" style="width: 100%">
 				</div>
 				<div style="margin-bottom: 10px">
-					<input name="email" class="easyui-textbox" required="true"
+					<input name="imgage" class="easyui-textbox" required="true"
 						validType="email" label="Email:" style="width: 100%">
 				</div>
 			</form>
@@ -106,58 +107,26 @@
         var url;
         /* 增加管理员 */
         function newUser(){
-            $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
-            $('#fm').form('clear');
-            url = 'save_user.php';
+        	location.href="${pageContext.request.contextPath}/role/updateRoleAction.do?rid="+rid;
         }
+        
         function editUser(){
-            var row = $('#dg').datagrid('getSelected');
-            if (row){
-                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit User');
-                $('#fm').form('load',row);
+             var row = $('#dg').datagrid('getSelected');
+             var rid;
+             if (row){
+                /* $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit User');
+                $('#fm').form('load',row); 
                 url = 'update_user.php?id='+row.id;
-            }
-        }
-        /*保存增加的管理员*/
-        function saveUser(){
-            $('#fm').form('submit',{
-                url: url,
-                onSubmit: function(){
-                    return $(this).form('validate');
-                },
-                success: function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
-                        $.messager.show({
-                            title: 'Error',
-                            msg: result.errorMsg
-                        });
-                    } else {
-                        $('#dlg').dialog('close');        // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
-                    }
-                }
-            });
+                */
+        	location.href="${pageContext.request.contextPath}/role/updateRoleAction.do?rid="+row.id;
+        	alert(rid);  
+            } 
         }
         /*删除管理员*/
         function destroyUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
-                /* $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
-                    if (r){
-                        $.post('destroy_user.php',{id:row.id},function(result){
-                            if (result.success){
-                                $('#dg').datagrid('reload');    // reload the user data
-                            } else {
-                                $.messager.show({    // show error message
-                                    title: 'Error',
-                                    msg: result.errorMsg
-                                });
-                            }
-                        },'json');
-                    }
-                }); */
-                
+            	           
             }
         }
     </script>

@@ -14,6 +14,7 @@
 		<result property="creattime" column="creattime" />
 		<result property="updateuser" column="updateuser" />
 		<result property="updatetime" column="updatetime" />
+		<result property="updatetime" column="updatetime" />
 	</resultMap>
 	<select id="searchAdminByAid" resultMap="RoleResultMap">
 		select * from tc_role where rid in(select rid from tc_role_admin where aid =
@@ -31,17 +32,14 @@
 	<select id="findRoleByRid" resultMap="RoleResultMap">
 		select * from tc_role where rid=#{rid}
 	</select>
-	<update id="updateRolePrivs">
+	<update id="updateRoleName" >
 		update tc_role set rname=#{rname} where rid=#{rid}
 	</update>
-	<!-- <insert id="insertRolePrivs">
-		insert into tc_role_priv (rid,pid,creattime) values (#{rid},#{rname},#{creattime})
+	<insert id="insertRolePrivs" >
+		insert into tc_role_priv (rid,pid,creattime) values (#{arg0},#{arg1},#{arg2})
 	</insert>
-	<insert id="insertRole" useGeneratedKeys="true" keyProperty="rid" keyColumn="rid">
-		insert into tc_role (rname,creattime) value (#{rname},#{creattime})
+	<insert id="insertRole"  keyColumn="rid">
+		insert into tc_role (rname,createtime) values (#{rname},#{arg1})
 	</insert>
-	<insert id="insertRolePrivs">
-		insert into tc_role_priv (rid,pid,creattime) values (#{rid},#{pid},#{creattime})
-	</insert> -->
 
 </mapper>

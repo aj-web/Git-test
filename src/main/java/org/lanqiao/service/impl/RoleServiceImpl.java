@@ -1,5 +1,6 @@
 package org.lanqiao.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.lanqiao.entity.Priv;
@@ -34,10 +35,21 @@ public class RoleServiceImpl implements RoleService {
 		return lr;
 	}
 	public boolean addRole(Role role) {
-		int id=roleMapper.insertRole(role);
+		System.out.println("开始插入角色名称");
+		java.sql.Date date=new Date(new java.util.Date().getTime());
+		String rname=role.getRname();
+		System.out.println(rname);
+		int id=roleMapper.insertRole(rname,date);
+		System.out.println(id);
+		System.out.println("插入角色名称完成");
 		if(id!=-1) {
 			role.setRid(id);			
-			roleMapper.insertRolePrivs(role);
+			List<Priv> lp=role.getLp();	//插入pid和时间
+			for(Priv priv:lp) {
+				int pid=priv.getPid();
+				int rid=role.getRid();
+				int k=roleMapper.insertRolePrivs(rid,pid,date);		//为角色赋予权利插入rid		 
+			}
 		}
 		
 		return id!=-1?true:false;
@@ -48,9 +60,17 @@ public class RoleServiceImpl implements RoleService {
 		return (i+j)>=2?true:false;
 	}
 	public boolean UpdateRoleAndPrivs(Role role) {
-		int i=roleMapper.updateRolePrivs(role);  //更新角色的名字
+		int k=0;
+		int i=roleMapper.updateRoleName(role);  //更新角色的名字
 		int j=roleMapper.deleteRolePrivs(role.getRid());  //删除角色的权利
-		int k=roleMapper.insertRolePrivs(role);	//为角色赋予权利
+		List<Priv> lp=role.getLp();	//插入pid和时间
+		for(Priv priv:lp) {
+			int pid=priv.getPid();
+			int rid=role.getRid();	
+			java.sql.Date date=new Date(new java.util.Date().getTime());
+			k=roleMapper.insertRolePrivs(rid,pid,date);		//为角色赋予权利插入rid		 
+		}
+		
 		return i+j+k>3?true:false;
 	}
 	public Role getRoleById(int rid) {

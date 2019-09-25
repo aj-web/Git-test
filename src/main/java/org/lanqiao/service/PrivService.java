@@ -1,5 +1,9 @@
 package org.lanqiao.service;
 
-public interface PrivService {
+import java.util.List;
 
+import org.lanqiao.entity.Priv;
+
+public interface PrivService {
+	
 }

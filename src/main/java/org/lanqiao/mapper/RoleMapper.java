@@ -2,6 +2,8 @@ package org.lanqiao.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.lanqiao.entity.Priv;
 import org.lanqiao.entity.Role;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +22,12 @@ public interface RoleMapper {
 	 * @param role
 	 * @returnint 返回值,表示获取添加新记录的生成的id值
 	 */
-	int insertRole(Role role);
+	int insertRole(@Param("rname")String rname,java.sql.Date date);
 	/**
 	 * 角色管理中的添加角色赋予权限
 	 * @return 
 	 */
-	int insertRolePrivs(Role role);
+	int insertRolePrivs(int rid,int pid,java.sql.Date date);
 	/**
 	 * 删除角色
 	 * @param role
@@ -43,7 +45,7 @@ public interface RoleMapper {
 	 * @param rid
 	 * @return
 	 */
-	int updateRolePrivs(Role role);
+	int updateRoleName(Role role);
 	/**
 	 * 角色管理修改功能，用rid获取当前选中用户
 	 * @param rid

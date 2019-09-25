@@ -96,6 +96,12 @@ public class AdminController {
 	public String test() {
 		return "role/json";
 	}
+	
+//	@RequestMapping("/role/role_list.html")
+//	public String test2() {
+//		return "role/role_list";
+//	}
+	
 	/**
 	 * 访问账务账号页面
 	 * 
@@ -206,7 +212,7 @@ public class AdminController {
 	}
 
 	//管理员增加管理员
-	
+
 	  public void addAdmin(HttpServletRequest request, HttpServletResponse response,String aname,String acname,String apwd,String reapwd,String aemail,String atel) throws ServletException, IOException { 
 		  //头像 userimg	  
 	  String [] roles=request.getParameterValues("role"); 
